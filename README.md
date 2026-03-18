@@ -1,26 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Helpdesk (Next.js + Supabase)
 
-## Getting Started
+Sistema de tickets con:
+- Next.js (App Router) + TypeScript
+- Supabase (Auth + Postgres + Storage + Realtime)
+- Tailwind + shadcn/ui
 
-First, run the development server:
+## Setup
+
+1) Crea un proyecto en Supabase y ejecuta `supabase/schema.sql` en el SQL editor.
+2) Activa Realtime para la tabla `public.messages` (Database → Replication / Realtime).
+3) Crea `.env.local` desde `.env.example` y completa:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY` (necesaria para crear usuarios desde el panel admin)
+4) Arranca el proyecto:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Primer admin
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+El registro público crea siempre usuarios con rol `user`. Para crear el primer admin:
+- Regístrate con tu email.
+- En Supabase SQL editor ejecuta:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sql
+update public.profiles set role = 'admin' where email = 'TU_EMAIL';
+```
 
-## Learn More
+Luego entra en `/dashboard/admin/users` para gestionar usuarios.
+
+## Deploy (Vercel)
+
+Configura las mismas variables de entorno en Vercel y despliega. La protección de rutas se hace con `proxy.ts` (Next.js 16).
 
 To learn more about Next.js, take a look at the following resources:
 
