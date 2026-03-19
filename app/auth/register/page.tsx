@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { UserPlus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -34,7 +35,7 @@ export default function RegisterPage() {
       if (data.session) {
         router.push("/dashboard");
       } else {
-        toast.message("Revisa tu email si Supabase requiere confirmación.");
+        toast.message("Revisa tu email si Supabase requiere confirmacion.");
         router.push("/auth/login");
       }
       router.refresh();
@@ -46,9 +47,12 @@ export default function RegisterPage() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Registro (usuario básico)</CardTitle>
+    <Card className="border-0 shadow-xl shadow-primary/5">
+      <CardHeader className="space-y-1 pb-4">
+        <CardTitle className="text-2xl font-bold">Crear cuenta</CardTitle>
+        <p className="text-sm text-muted-foreground">
+          Registrate para empezar a crear tickets
+        </p>
       </CardHeader>
       <CardContent>
         <form onSubmit={onSubmit} className="flex flex-col gap-4">
@@ -57,6 +61,8 @@ export default function RegisterPage() {
             <Input
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
+              placeholder="Tu nombre"
+              className="h-11"
               required
             />
           </div>
@@ -67,26 +73,35 @@ export default function RegisterPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="tu@email.com"
+              className="h-11"
               required
             />
           </div>
           <div className="grid gap-2">
-            <label className="text-sm font-medium">Contraseña</label>
+            <label className="text-sm font-medium">Contrasena</label>
             <Input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="h-11"
               required
               minLength={6}
             />
           </div>
-          <Button type="submit" disabled={loading}>
-            {loading ? "Creando..." : "Crear cuenta"}
+          <Button type="submit" disabled={loading} className="h-11 mt-2">
+            {loading ? (
+              "Creando..."
+            ) : (
+              <>
+                <UserPlus className="mr-2 h-4 w-4" />
+                Crear cuenta
+              </>
+            )}
           </Button>
-          <p className="text-sm text-muted-foreground">
-            ¿Ya tienes cuenta?{" "}
-            <Link className="underline" href="/auth/login">
-              Inicia sesión
+          <p className="text-center text-sm text-muted-foreground">
+            Ya tienes cuenta?{" "}
+            <Link className="text-primary font-medium hover:underline" href="/auth/login">
+              Inicia sesion
             </Link>
           </p>
         </form>

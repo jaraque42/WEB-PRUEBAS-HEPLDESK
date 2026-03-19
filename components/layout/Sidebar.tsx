@@ -30,7 +30,7 @@ const items: NavItem[] = [
   },
   {
     href: "/dashboard/admin/stats",
-    label: "Estadísticas",
+    label: "Estadisticas",
     icon: <BarChart3 className="h-4 w-4" />,
     roles: ["admin"],
   },
@@ -38,14 +38,20 @@ const items: NavItem[] = [
 
 export function Sidebar({ role }: { role: Role }) {
   return (
-    <aside className="hidden md:flex md:w-64 md:flex-col md:border-r md:bg-card">
-      <div className="px-4 py-4 border-b">
-        <Link href="/dashboard" className="font-semibold tracking-tight">
-          Helpdesk
+    <aside className="hidden md:flex md:w-64 md:flex-col bg-sidebar text-sidebar-foreground">
+      <div className="px-5 py-5 border-b border-sidebar-border">
+        <Link href="/dashboard" className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+            <Ticket className="h-4 w-4" />
+          </div>
+          <span className="font-bold text-base tracking-tight">Helpdesk</span>
         </Link>
       </div>
-      <nav className="flex-1 p-2">
-        <ul className="flex flex-col gap-1">
+      <nav className="flex-1 px-3 py-4">
+        <p className="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-foreground/40">
+          Menu
+        </p>
+        <ul className="flex flex-col gap-0.5">
           {items
             .filter((it) => !it.roles || it.roles.includes(role))
             .map((it) => (
@@ -53,7 +59,8 @@ export function Sidebar({ role }: { role: Role }) {
                 <Link
                   href={it.href}
                   className={cn(
-                    "flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground",
+                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium",
+                    "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                     "transition-colors",
                   )}
                 >
@@ -64,10 +71,14 @@ export function Sidebar({ role }: { role: Role }) {
             ))}
         </ul>
       </nav>
-      <div className="p-4 border-t text-xs text-muted-foreground">
-        {role === "admin" ? "Modo Admin" : "Modo Usuario"}
+      <div className="border-t border-sidebar-border px-5 py-4">
+        <div className="flex items-center gap-2">
+          <div className="h-2 w-2 rounded-full bg-emerald-400" />
+          <span className="text-xs text-sidebar-foreground/50">
+            {role === "admin" ? "Administrador" : "Usuario"}
+          </span>
+        </div>
       </div>
     </aside>
   );
 }
-
