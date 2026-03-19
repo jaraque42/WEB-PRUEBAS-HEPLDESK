@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { AppShellProviders } from "@/components/layout/AppShellProviders";
 import { Header } from "@/components/layout/Header";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -31,12 +32,14 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex flex-1 min-h-0">
-      <Sidebar role={profile.role} />
-      <div className="flex flex-1 min-w-0 flex-col">
-        <Header profile={profile} />
-        <main className="flex-1 min-h-0 overflow-auto p-6">{children}</main>
+    <AppShellProviders>
+      <div className="flex flex-1 min-h-0">
+        <Sidebar role={profile.role} />
+        <div className="flex flex-1 min-w-0 flex-col">
+          <Header profile={profile} />
+          <main className="flex-1 min-h-0 overflow-auto p-6">{children}</main>
+        </div>
       </div>
-    </div>
+    </AppShellProviders>
   );
 }

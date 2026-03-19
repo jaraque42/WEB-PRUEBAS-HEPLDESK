@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Providers } from "@/app/providers";
-import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "INCIDENCIAS IT PMR MAD",
@@ -16,14 +14,11 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className="h-full antialiased"
+      className="h-full antialiased dark"
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <Providers>
-          {children}
-          <Toaster richColors />
-        </Providers>
+        {children}
       </body>
     </html>
   );
