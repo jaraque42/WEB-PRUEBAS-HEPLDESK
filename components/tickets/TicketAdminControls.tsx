@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,7 @@ export function TicketAdminControls({
   currentAssignee: string | null;
   admins: Profile[];
 }) {
+  const router = useRouter();
   const [status, setStatus] = useState<TicketStatus>(currentStatus);
   const [assignedTo, setAssignedTo] = useState<string>(currentAssignee ?? "unassigned");
   const [saving, setSaving] = useState(false);
@@ -51,6 +53,7 @@ export function TicketAdminControls({
         | null;
       if (!res.ok) throw new Error(data?.error ?? "No se pudo actualizar");
       toast.success("Ticket actualizado");
+      router.refresh();
     } catch (err: unknown) {
       toast.error(err instanceof Error ? err.message : "Error");
     } finally {
