@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LayoutDashboard, Ticket, Users, BarChart3 } from "lucide-react";
 
@@ -41,10 +42,8 @@ export function Sidebar({ role }: { role: Role }) {
     <aside className="hidden md:flex md:w-64 md:flex-col bg-sidebar text-sidebar-foreground">
       <div className="px-5 py-5 border-b border-sidebar-border">
         <Link href="/dashboard" className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-            <Ticket className="h-4 w-4" />
-          </div>
-          <span className="font-bold text-base tracking-tight">Helpdesk</span>
+          <Image src="/logo-icon.svg" alt="Mitie" width={32} height={32} className="h-8 w-8" />
+          <span className="font-bold text-base tracking-tight">INCIDENCIAS IT</span>
         </Link>
       </div>
       <nav className="flex-1 px-3 py-4">

@@ -4,8 +4,8 @@ import { Providers } from "@/app/providers";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
-  title: "Helpdesk",
-  description: "Sistema de tickets con Next.js + Supabase",
+  title: "INCIDENCIAS IT PMR MAD",
+  description: "Sistema de incidencias IT - Mitie",
 };
 
 export default function RootLayout({

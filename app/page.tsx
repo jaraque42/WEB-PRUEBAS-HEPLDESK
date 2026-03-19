@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Ticket, MessageCircle, Shield, Zap } from "lucide-react";
 
@@ -8,21 +9,29 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,var(--color-primary)/15,transparent)]" />
 
         <div className="relative z-10 w-full max-w-4xl text-center">
+          <Image
+            src="/logo-mitie.png"
+            alt="Mitie"
+            width={180}
+            height={54}
+            className="mx-auto mb-6 h-14 w-auto object-contain"
+          />
+
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm text-primary mb-8">
             <Zap className="h-3.5 w-3.5" />
-            Sistema de soporte interno
+            Sistema de incidencias IT
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-br from-foreground via-foreground/90 to-foreground/60 bg-clip-text text-transparent">
-            Gestiona tus tickets
+            INCIDENCIAS IT
             <br />
             <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              de forma inteligente
+              PMR MAD
             </span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            Crea tickets, asigna responsables, chatea en tiempo real y adjunta
+            Crea incidencias, asigna responsables, chatea en tiempo real y adjunta
             archivos. Todo desde una interfaz moderna y sencilla.
           </p>
 
@@ -44,7 +53,7 @@ export default function HomePage() {
               <div className="mb-3 inline-flex rounded-xl bg-primary/10 p-2.5">
                 <Ticket className="h-5 w-5 text-primary" />
               </div>
-              <h3 className="font-semibold">Tickets</h3>
+              <h3 className="font-semibold">Incidencias</h3>
               <p className="mt-1 text-sm text-muted-foreground">
                 Crea y rastrea incidencias con prioridad y categorias.
               </p>

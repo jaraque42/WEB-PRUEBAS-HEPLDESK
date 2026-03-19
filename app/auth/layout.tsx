@@ -1,18 +1,28 @@
-import { Ticket } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex-1 flex min-h-screen">
-      <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-primary/90 via-primary to-primary/80 items-center justify-center p-12">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,white/10,transparent_50%)]" />
-        <div className="relative z-10 max-w-md text-primary-foreground">
-          <div className="mb-6 inline-flex rounded-2xl bg-white/10 p-3">
-            <Ticket className="h-8 w-8" />
-          </div>
-          <h2 className="text-3xl font-bold tracking-tight">Helpdesk</h2>
-          <p className="mt-3 text-lg text-primary-foreground/80">
-            Gestiona tickets, comunica con tu equipo y resuelve incidencias de forma eficiente.
+      <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-[#5B2D8E] via-[#7B2D8E] to-[#E8451C] items-center justify-center p-12 overflow-hidden">
+        <Image
+          src="/logo-mitie.png"
+          alt=""
+          width={700}
+          height={700}
+          className="absolute inset-0 m-auto opacity-[0.06] w-[70%] max-w-[700px] pointer-events-none select-none"
+        />
+        <div className="relative z-10 max-w-md text-white">
+          <Image
+            src="/logo-mitie.png"
+            alt="Mitie"
+            width={160}
+            height={48}
+            className="mb-6 h-12 w-auto object-contain"
+          />
+          <h2 className="text-3xl font-bold tracking-tight">INCIDENCIAS IT PMR MAD</h2>
+          <p className="mt-3 text-lg text-white/80">
+            Ingresa tus credenciales para acceder al sistema de incidencias.
           </p>
         </div>
       </div>
@@ -22,8 +32,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           href="/"
           className="mb-8 flex items-center gap-2 text-lg font-semibold lg:hidden"
         >
-          <Ticket className="h-5 w-5 text-primary" />
-          Helpdesk
+          <Image src="/logo-icon.svg" alt="Mitie" width={24} height={24} className="h-6 w-6" />
+          INCIDENCIAS IT
         </Link>
         <div className="w-full max-w-md">{children}</div>
       </div>

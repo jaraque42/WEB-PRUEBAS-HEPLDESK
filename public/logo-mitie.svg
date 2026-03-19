@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280">
+  <defs>
+    <linearGradient id="purple-grad" x1="0.3" y1="0" x2="0.7" y2="1">
+      <stop offset="0%" stop-color="#7B2D8E"/>
+      <stop offset="100%" stop-color="#3D1952"/>
+    </linearGradient>
+    <linearGradient id="orange-grad" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#E8451C"/>
+      <stop offset="50%" stop-color="#F58220"/>
+      <stop offset="100%" stop-color="#FDB913"/>
+    </linearGradient>
+    <clipPath id="circle-clip">
+      <circle cx="130" cy="140" r="120"/>
+    </clipPath>
+  </defs>
+  <!-- Circle background -->
+  <circle cx="130" cy="140" r="120" fill="url(#orange-grad)"/>
+  <!-- Purple slice -->
+  <path d="M130,20 A120,120 0 0,0 60,245 L130,140 Z" fill="url(#purple-grad)" clip-path="url(#circle-clip)"/>
+  <!-- Text: mitie -->
+  <text x="290" y="185" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="160" fill="#5A5A5A" letter-spacing="-3">
+    mitie
+  </text>
+  <!-- Dot on the i -->
+  <circle cx="678" cy="72" r="18" fill="#5A5A5A"/>
+</svg>
