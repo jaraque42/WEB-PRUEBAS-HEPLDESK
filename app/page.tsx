@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button-link";
-import { Ticket, MessageCircle, Shield, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -30,11 +30,6 @@ export default function HomePage() {
             </span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-            Crea incidencias, asigna responsables, chatea en tiempo real y adjunta
-            archivos. Todo desde una interfaz moderna y sencilla.
-          </p>
-
           <div className="flex flex-wrap items-center justify-center gap-4 pt-8">
             <ButtonLink href="/auth/login" className="h-12 px-8 text-base">
               Iniciar sesion
@@ -48,35 +43,6 @@ export default function HomePage() {
             </ButtonLink>
           </div>
 
-          <div className="mx-auto mt-16 grid max-w-3xl gap-6 sm:grid-cols-3">
-            <div className="group rounded-2xl border bg-card/50 backdrop-blur-sm p-6 text-left transition-all hover:shadow-lg hover:shadow-primary/5 hover:border-primary/20">
-              <div className="mb-3 inline-flex rounded-xl bg-primary/10 p-2.5">
-                <Ticket className="h-5 w-5 text-primary" />
-              </div>
-              <h3 className="font-semibold">Incidencias</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Crea y rastrea incidencias con prioridad y categorias.
-              </p>
-            </div>
-            <div className="group rounded-2xl border bg-card/50 backdrop-blur-sm p-6 text-left transition-all hover:shadow-lg hover:shadow-primary/5 hover:border-primary/20">
-              <div className="mb-3 inline-flex rounded-xl bg-primary/10 p-2.5">
-                <MessageCircle className="h-5 w-5 text-primary" />
-              </div>
-              <h3 className="font-semibold">Chat en vivo</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Comunicate con tu equipo directamente en cada ticket.
-              </p>
-            </div>
-            <div className="group rounded-2xl border bg-card/50 backdrop-blur-sm p-6 text-left transition-all hover:shadow-lg hover:shadow-primary/5 hover:border-primary/20">
-              <div className="mb-3 inline-flex rounded-xl bg-primary/10 p-2.5">
-                <Shield className="h-5 w-5 text-primary" />
-              </div>
-              <h3 className="font-semibold">Panel admin</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Gestiona usuarios, estadisticas y asignaciones.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </main>
