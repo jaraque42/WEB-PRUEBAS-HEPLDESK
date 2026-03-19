@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button-link";
-import { Zap } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -18,7 +17,18 @@ export default function HomePage() {
           />
 
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm text-primary mb-8">
-            <Zap className="h-3.5 w-3.5" />
+            <svg
+              className="h-3.5 w-3.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M13 2L3 14h7l-1 8 12-14h-7l-1-6Z"
+                fill="currentColor"
+              />
+            </svg>
             Sistema de incidencias IT
           </div>
 
