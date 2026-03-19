@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { ButtonLink } from "@/components/ui/button-link";
+import { buttonVariants } from "@/components/ui/button-variants";
 
 export default function HomePage() {
   return (
@@ -8,12 +7,13 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,var(--color-primary)/15,transparent)]" />
 
         <div className="relative z-10 w-full max-w-4xl text-center">
-          <Image
+          <img
             src="/logo-mitie.png"
             alt="Mitie"
             width={180}
             height={54}
             className="mx-auto mb-6 h-14 w-auto object-contain"
+            loading="eager"
           />
 
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm text-primary mb-8">
@@ -41,18 +41,25 @@ export default function HomePage() {
           </h1>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-8">
-            <ButtonLink href="/auth/login" className="h-12 px-8 text-base">
+            <a
+              href="/auth/login"
+              className={buttonVariants({
+                variant: "default",
+                className: "h-12 px-8 text-base",
+              })}
+            >
               Iniciar sesion
-            </ButtonLink>
-            <ButtonLink
+            </a>
+            <a
               href="/auth/register"
-              variant="secondary"
-              className="h-12 px-8 text-base"
+              className={buttonVariants({
+                variant: "secondary",
+                className: "h-12 px-8 text-base",
+              })}
             >
               Crear cuenta
-            </ButtonLink>
+            </a>
           </div>
-
         </div>
       </div>
     </main>
