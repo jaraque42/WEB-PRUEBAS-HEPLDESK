@@ -55,11 +55,15 @@ export async function PATCH(
     | { status?: TicketStatus; assigned_to?: string | null }
     | null;
 
-  const { data: before } = await supabase
+  const { data: before, error: beforeError } = await supabase
     .from("tickets")
     .select("status,assigned_to")
     .eq("id", id)
     .maybeSingle();
+
+  if (beforeError) {
+    return NextResponse.json({ error: beforeError.message }, { status: 400 });
+  }
 
   if (!before) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
