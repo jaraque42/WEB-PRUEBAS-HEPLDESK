@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -32,57 +31,26 @@ export function TicketAdminControls({
   currentAssignee: string | null;
   admins: Profile[];
 }) {
-  const router = useRouter();
-  const initial = useRef<{
-    status: TicketStatus;
-    assignedTo: string;
-  }>({
-    status: currentStatus,
-    assignedTo: currentAssignee ?? "unassigned",
-  });
   const [status, setStatus] = useState<TicketStatus>(currentStatus);
   const [assignedTo, setAssignedTo] = useState<string>(currentAssignee ?? "unassigned");
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    const next = {
-      status: currentStatus,
-      assignedTo: currentAssignee ?? "unassigned",
-    };
-    initial.current = next;
-    setStatus(next.status);
-    setAssignedTo(next.assignedTo);
-  }, [currentAssignee, currentStatus, ticketId]);
-
   async function save() {
-    const payload: { status?: TicketStatus; assigned_to?: string | null } = {};
-    if (status !== initial.current.status) payload.status = status;
-    if (assignedTo !== initial.current.assignedTo) {
-      payload.assigned_to = assignedTo === "unassigned" ? null : assignedTo;
-    }
-
-    if (!payload.status && !Object.prototype.hasOwnProperty.call(payload, "assigned_to")) {
-      toast.message("Sin cambios");
-      return;
-    }
-
     setSaving(true);
     try {
       const res = await fetch(`/api/tickets/${ticketId}`, {
         method: "PATCH",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          status,
+          assigned_to: assignedTo === "unassigned" ? null : assignedTo,
+        }),
       });
       const data = (await res.json().catch(() => null)) as
         | { error?: string }
         | null;
       if (!res.ok) throw new Error(data?.error ?? "No se pudo actualizar");
       toast.success("Ticket actualizado");
-      initial.current = {
-        status,
-        assignedTo,
-      };
-      router.refresh();
     } catch (err: unknown) {
       toast.error(err instanceof Error ? err.message : "Error");
     } finally {
